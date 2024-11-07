@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_share/social_share.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'widgets/chorus_widget.dart';
 import 'widgets/first_lyric_widget.dart';
@@ -30,7 +30,7 @@ class HymnDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isFrench = lang == 'fr';
 
-    String hymnText = "*$songId.  $songTitle*\n\n\n"
+    String hymnText = "*$songId.  $songTitle*\n\n"
         "${enLyrics.first}\n\n\n"
         "${chorus.isNotEmpty ? lang == "en" ? "*Chorus :*\n" : "*Refrain :*\n" : ''}"
         "${chorus.isNotEmpty ? "$chorus\n\n\n" : ''}"
@@ -55,7 +55,7 @@ class HymnDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async => {SocialShare.shareOptions(hymnText)},
+        onPressed: () async => await Share.share(hymnText),
         child: const Icon(Icons.share),
       ),
     );
